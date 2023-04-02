@@ -1,0 +1,90 @@
+// LOCALHOST
+### Get all students
+GET http://localhost:5050/students
+
+
+### Get all teachers
+GET http://localhost:5050/teachers
+
+### Get contact by id
+GET http://localhost:5050/students/641f17b3176c3933a0216284
+
+
+### Create contact
+POST http://localhost:5050/students
+content-type: application/json
+
+{
+    "firstName": "Juan",
+    "lastName": "Yánez",
+    "age": 28,
+    "emailAddress": "juan@test.com",
+    "phoneNumber": "+593981234577",
+    "studentStatus": "active",
+    "emergencyName": "Mónica Gavilanes",
+    "emergencyPhone": "+59398454690"
+}
+
+
+### PUT contact
+PUT http://localhost:5050/students/641f17db176c3933a0216286
+content-type: application/json
+
+{
+     "firstName": "Ana",
+    "lastName": "Quispe",
+    "age": 28,
+    "emailAddress": "anaquispe@example.com",
+    "phoneNumber": "+593984567890",
+    "studentStatus": "passive",
+    "emergencyName": "José Quispe",
+    "emergencyPhone": "+593987654321"
+    }
+### DELETE contact
+DELETE http://localhost:5050/students/641f1844176c3933a021628c
+
+// PRODUCTION Deploy
+### Get all students
+GET https://lesson05-javier-espinoza.onrender.com/students
+
+
+### Get contact by id
+GET https://lesson05-javier-espinoza.onrender.com/students/641f17b3176c3933a0216284
+
+
+### Create contact
+POST https://lesson05-javier-espinoza.onrender.com/students HTTP/1.1
+content-type: application/json
+
+{
+      "firstName": "Juan",
+    "lastName": "Yánez",
+    "age": 28,
+    "emailAddress": "juan@test.com",
+    "phoneNumber": "+593981234577",
+    "studentStatus": "active",
+    "emergencyName": "Mónica Gavilanes",
+    "emergencyPhone": "+59398454690"
+}
+
+
+### PUT contact
+PUT https://lesson05-javier-espinoza.onrender.com/students/641f1844176c3933a021628c HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Lucía",
+    "lastName": "Ramirez",
+    "age": 23,
+    "emailAddress": "luciaramirez@example.com",
+    "phoneNumber": "+593981234567",
+    "studentStatus": "passive",
+    "emergencyName": "Juan Ramirez",
+    "emergencyPhone": "+593984567890"
+}
+
+
+
+### DELETE contact
+DELETE https://lesson05-javier-espinoza.onrender.com/students/641f1844176c3933a021628c
+
