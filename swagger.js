@@ -5,7 +5,7 @@ const doc = {
     title: 'Oline Course Api',
     description: 'Students and Teachers Information'
   },
-  host: 'lesson05-javier-espinoza.onrender.com',
+  host: 'online-course-eq82.onrender.com',
   schemes: ['https']
 };
 
