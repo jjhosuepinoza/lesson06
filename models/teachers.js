@@ -8,7 +8,7 @@ module.exports = (mongoose) => {
         type: 'String'
       },
       age: {
-        type: 'Int32'
+        type: 'Number'
       },
       emailAddress: {
         type: 'String'
