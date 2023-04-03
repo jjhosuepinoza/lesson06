@@ -21,6 +21,9 @@ module.exports = (mongoose) => {
       },
       availability: {
         type: [mongoose.SchemaTypes.Mixed]
+      },
+      password:{
+        type:'String'
       }
     });
 

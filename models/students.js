@@ -29,7 +29,11 @@ module.exports = (mongoose) => {
             },
             "emergencyPhone": {
               "type": "String"
+            },
+            "password":{
+              "type":"String"
             }
+            
           })
     );
 

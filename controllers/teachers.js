@@ -4,7 +4,7 @@ const Teacher = db.teacher;
 
 exports.createTeacher = (req, res) => {
   // Validate request
-  if (!req.body.emailAddress|| !req.body.lastName) {
+  if (!req.body.emailAddress|| !req.body.password) {
     res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }

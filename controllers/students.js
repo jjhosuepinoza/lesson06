@@ -1,14 +1,28 @@
 const db = require('../models');
 const Student = db.student;
+const passwordStudent = require ('../util/passComplex');
+// const {authSchema} = require('../util/passComplex');
 
-
-exports.createStudent = (req, res) => {
+module.exports.createStudent =  (req, res) => {
   // Validate request
-  if (!req.body.emailAddress|| !req.body.lastName) {
+
+try{
+  // const result = await authSchema.validateAsync(req.body)
+  // console.log(result)
+
+  if (!req.body.emailAddress|| !req.body.password) {
     res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }
 
+  const password = req.body.password;
+  const passwordCheck = passwordStudent.passwordPass(password);
+  if (passwordCheck.error) {
+    res.status(400).send({ message: passwordCheck.error });
+    return;
+  }
+
+  
   const student = new Student(req.body);
   student
     .save()
@@ -21,10 +35,21 @@ exports.createStudent = (req, res) => {
         message: err.message || 'Some error occurred while creating the student.'
       });
     });
+    
+} catch (err) {
+res.status(500).json(err);
+}
 };
 
-exports.getAll = (req, res) => {
+
+
+module.exports.getAll = (req, res) => {
+ 
+  try{
+
+  
   Student.find({})
+
     .then((data) => {
       res.send(data);
     })
@@ -33,10 +58,18 @@ exports.getAll = (req, res) => {
         message: err.message || 'Some error occurred while retrieving students.'
       });
     });
+    
+  } catch (err){
+res.status(500).json(err);
+  }
 };
 
-exports.getStudent = (req, res) => {
+
+module.exports.getStudent = (req, res) => {
+
+  try{
   const emailAddress = req.params.emailAddress;
+
   Student.find({ emailAddress: emailAddress })
     .then((data) => {
       res.send(data);
@@ -46,4 +79,67 @@ exports.getStudent = (req, res) => {
         message: err.message || 'Some error occurred while retrieving students.'
       });
     });
+} catch(err){
+  res.status(500).json(err);
+}  
+};
+
+
+module.exports.updateStudent = async (req, res) => {
+  try {
+    const emailAddress = req.params.emailAddress;
+    if (!emailAddress) {
+      res.status(400).send({ message: 'Invalid Email Supplied' });
+      return;
+    }
+    const password = req.body.password;
+    const passwordCheck = passwordStudent.passwordPass(password);
+    if (passwordCheck.error) {
+      res.status(400).send({ message: passwordCheck.error });
+      return;
+    }
+    Student.findOne({ emailAddress: emailAddress}, function (err, student) {
+      student.emailAddress = req.params.emailAddress;
+      student.password = req.body.password;
+      student.firstName = req.body.firstName;
+      student.lastName = req.body.lastName;
+      student.age = req.body.age;
+      student.phoneNumber = req.body.phoneNumber;
+      student.emergencyName = req.body.emergencyName;
+      student.emergencyPhone = req.body.emergencyPhone;
+    
+    
+      student.save(function (err) {
+        if (err) {
+          res.status(500).json(err || 'Some error occurred while updating the student.');
+        } else {
+          res.status(204).send();
+        }
+      });
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+
+module.exports.deleteStudent = async (req, res) => {
+  try {
+    const emailAddress = req.params.emailAddress;
+    if (!emailAddress) {
+      res.status(400).send({ message: 'Invalid email address Supplied' });
+      return;
+    }
+    Student.deleteOne({ emailAddress: emailAddress }, function (err, result) {
+      if (err) {
+        res.status(500).json(err || 'Some error occurred while deleting the student.');
+      } else {
+        res.status(204).send(result);
+      }
+    });
+  } catch (err) {
+    res.status(500).json(err || 'Some error occurred while deleting the student information.');
+  }
+
+
 };

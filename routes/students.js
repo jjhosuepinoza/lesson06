@@ -9,8 +9,8 @@ router.get('/:emailAddress', studentsController.getStudent);
 
 router.post('/', studentsController.createStudent);
 
-// router.put('/:emailAddress', studentsController.updateStudent);
+router.put('/:emailAddress', studentsController.updateStudent);
 
-// router.delete('/:emailAddress', studentsController.deleteStudent);
+router.delete('/:emailAddress', studentsController.deleteStudent);
 
 module.exports = router;
