@@ -1,9 +1,6 @@
 module.exports = (mongoose) => {
   const teacherSchema =  mongoose.Schema({
     
-      _id: {
-        type: 'ObjectId'
-      },
       firstName: {
         type: 'String'
       },

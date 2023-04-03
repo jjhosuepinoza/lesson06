@@ -1,14 +1,13 @@
 const db = require('../models');
 const Student = db.student;
 const passwordStudent = require ('../util/passComplex');
-// const {authSchema} = require('../util/passComplex');
+
 
 module.exports.createStudent =  (req, res) => {
-  // Validate request
+ 
 
 try{
-  // const result = await authSchema.validateAsync(req.body)
-  // console.log(result)
+  
 
   if (!req.body.emailAddress|| !req.body.password) {
     res.status(400).send({ message: 'Content can not be empty!' });
@@ -105,10 +104,9 @@ module.exports.updateStudent = async (req, res) => {
       student.lastName = req.body.lastName;
       student.age = req.body.age;
       student.phoneNumber = req.body.phoneNumber;
+      student.studentStatus = req.studentStatus;
       student.emergencyName = req.body.emergencyName;
       student.emergencyPhone = req.body.emergencyPhone;
-    
-    
       student.save(function (err) {
         if (err) {
           res.status(500).json(err || 'Some error occurred while updating the student.');
@@ -140,6 +138,5 @@ module.exports.deleteStudent = async (req, res) => {
   } catch (err) {
     res.status(500).json(err || 'Some error occurred while deleting the student information.');
   }
-
 
 };

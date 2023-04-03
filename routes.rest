@@ -7,21 +7,11 @@ GET http://localhost:5050/students
 GET http://localhost:5050/teachers
 
 ### Get contact by email
-GET http://localhost:5050/students/juanespinoza@test.com
+GET http://localhost:5050/students/anaquispe@example.com
 
 
 ### Create contact
 POST http://localhost:5050/students
-content-type: application/json
-
-{
-    "emailAddress":"juanrito@test.com",
-    "password":"Juanito"
-}
-
-
-### PUT contact
-PUT http://localhost:5050/students/641f17db176c3933a0216286
 content-type: application/json
 
 {
@@ -32,7 +22,28 @@ content-type: application/json
     "phoneNumber": "+593984567890",
     "studentStatus": "passive",
     "emergencyName": "José Quispe",
-    "emergencyPhone": "+593987654321"
+    "emergencyPhone": "+593987654321",
+    "password":"AnaQuispe.2023",
+    "emailAddress": "anaquispe@example.com",
+    "password":"Espe.2023"
+}
+
+
+### PUT contact
+PUT http://localhost:5050/students/juanespinoza@test.com
+content-type: application/json
+
+{
+
+    "firstName": "Juan",
+    "lastName": "Espinoza",
+    "age": 20,
+    "emailAddress": "juanespinoza@test.com",
+    "phoneNumber": "+593981234567",
+    "studentStatus": "active",
+    "emergencyName": "Edelina Espinoza",
+    "emergencyPhone": "+593984567890",
+    "password:": "JuanEspinoza.2023"
     }
 ### DELETE contact
 DELETE http://localhost:5050/students/carlosvillacis@gmail.com

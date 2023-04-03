@@ -3,9 +3,6 @@ module.exports = (mongoose) => {
       'students',
       mongoose.Schema(
         {
-            "_id": {
-              "type": "ObjectId"
-            },
             "firstName": {
               "type": "String"
             },
