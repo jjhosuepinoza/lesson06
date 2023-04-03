@@ -123,14 +123,14 @@ module.exports.updateStudent = async (req, res) => {
 };
 
 
-module.exports.deleteStudent = async (req, res) => {
+module.exports.deleteStudent =  (req, res) => {
   try {
     const emailAddress = req.params.emailAddress;
     if (!emailAddress) {
       res.status(400).send({ message: 'Invalid email address Supplied' });
       return;
     }
-    Student.deleteOne({ emailAddress: emailAddress }, function (err, result) {
+    Student.delete({ emailAddress: emailAddress }, function (err, result) {
       if (err) {
         res.status(500).json(err || 'Some error occurred while deleting the student.');
       } else {
