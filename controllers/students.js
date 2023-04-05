@@ -50,7 +50,7 @@ module.exports.getAll = (req, res) => {
   Student.find({})
 
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -71,7 +71,7 @@ module.exports.getStudent = (req, res) => {
 
   Student.find({ emailAddress: emailAddress })
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -97,6 +97,7 @@ module.exports.updateStudent = async (req, res) => {
       res.status(400).send({ message: passwordCheck.error });
       return;
     }
+    
     Student.findOne({ emailAddress: emailAddress}, function (err, student) {
       student.emailAddress = req.params.emailAddress;
       student.password = req.body.password;
@@ -128,7 +129,8 @@ module.exports.deleteStudent = async (req, res) => {
       res.status(400).send({ message: 'Invalid email address Supplied' });
       return;
     }
-    Student.deleteOne({ emailAddress: emailAddress }, function (err, result) {
+
+    Student.deleteOne({emailAddress: emailAddress }, function (err, result) {
       if (err) {
         res.status(500).json(err || 'Some error occurred while deleting the student.');
       } else {

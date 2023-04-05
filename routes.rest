@@ -15,17 +15,17 @@ POST http://localhost:5050/students
 content-type: application/json
 
 {
-     "firstName": "Ana",
+     "firstName": "Juana",
     "lastName": "Quispe",
     "age": 28,
-    "emailAddress": "anaquispe@example.com",
-    "phoneNumber": "+593984567890",
+    "emailAddress": "anpe@example.com",
+    "phoneNumber": "+84567890",
     "studentStatus": "passive",
     "emergencyName": "José Quispe",
     "emergencyPhone": "+593987654321",
-    "password":"AnaQuispe.2023",
+    "password": "AnaQuispe.2023",
     "emailAddress": "anaquispe@example.com",
-    "password":"Espe.2023"
+    
 }
 
 
